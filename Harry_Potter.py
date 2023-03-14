@@ -63,8 +63,7 @@ while(cap.isOpened()):
     # all this Comes in the while loop
     lower_red = np.array([0, 120, 70])
     upper_red = np.array([10, 255, 255])  # values is for red colour Cloth
-    mask1 = cv2.inRange(hsv, lower_red, upper_red)
-    lower_red = np.array([170, 120, 70])
+   
     upper_red = np.array([180, 255, 255])
     # Step 4 – Apply the mask:
     mask2 = cv2.inRange(hsv, lower_red, upper_red)
@@ -72,7 +71,7 @@ while(cap.isOpened()):
     # Combining the masks so that It can be viewd as in one frame
     mask1 = mask1 + mask2
     mask1 = cv2.morphologyEx(mask1, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8), iterations=2)
-    mask1 = cv2.morphologyEx(mask1, cv2.MORPH_DILATE, np.ones((3, 3), np.uint8), iterations=1)
+    mask1 = cv2.morphologyEx(mask2, cv2.MORPH_DILATE, np.ones((3, 3), np.uint8), iterations=1)
 
     mask2 = cv2.bitwise_not(mask1)
 
